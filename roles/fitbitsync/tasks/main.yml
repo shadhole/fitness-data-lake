@@ -6,9 +6,9 @@
   - tailer
 
 - name: Create directory for FitBitSync
-  file: path=/Vagrant/Projects/FitBitSync/code state=directory
+  file: path=/Projects/FitBitSync/code state=directory
 
 - name: Clone fitbitsync code from git repository
   command: 	git clone https://github.com/shadhole/fitbitsplunk.git arg1
   args:
-    chdir: /Vagrant/Projects/FitBitSync/code
+    chdir: /Projects/FitBitSync/code
