@@ -9,6 +9,6 @@
   file: path=/Projects/FitBitSync/code state=directory
 
 - name: Clone fitbitsync code from git repository
-  command: 	git clone https://github.com/shadhole/fitbitsplunk.git arg1
+  command: git clone https://github.com/shadhole/fitbitsplunk.git arg1
   args:
     chdir: /Projects/FitBitSync/code

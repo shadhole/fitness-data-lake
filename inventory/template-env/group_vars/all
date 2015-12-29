@@ -1,6 +1,9 @@
 ##Define Domain name (Can't be blank)
 domain_name : local
 
+##Define Hostname
+hostname : test-server-1
+
 #Define datacenter environment (Can't be blank)
 dc_env : local
 env : test-env
@@ -25,7 +28,7 @@ elb_url :
 
 ##System variables (Can't be blank)
 #Define Time Zone
-timezone : Eastern/New York
+timezone : US/Eastern
 
 #Define global ssh user (Can't be blank)
 ansible_ssh_user : vagrant
