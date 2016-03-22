@@ -13,6 +13,7 @@
 #  - postfix
   - apache
   - fitbitsync
+  - cloudfoundry-cli
   #- psad
   #- rootkit-scanners
   #- tiger
