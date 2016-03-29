@@ -9,6 +9,7 @@ Ansible roles were borrowed from https://galaxy.ansible.com/nkadithya31/ansible/
 The main fitbit API project comes from https://github.com/edrabbit/fitbitsplunk
 
 Prerequisites:
+This project uses vagrant and ansible in order to configure the ubuntu server. If you have a server with these tools installed, simply copy this repo to that server. If you don't have an environment, perform the steps below on a server/laptop. This was tested on a Mac running OS X 10.10.5.
   * install vagrant locally
   * install virtualbox locally (hypervisor for ubuntu vm)
   * install ansible locally
