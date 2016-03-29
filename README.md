@@ -15,6 +15,7 @@ Prerequisites:
   * copy this repo locally
 
 usage:
+
 cd <directory where you copied this repo>/fitness-data-lake --> for example, /Projects/fitness-data-lake, if the repo is in /Projects
 
 vagrant up --provider=virtualbox
