@@ -1,6 +1,0 @@
----
-- name: Restart ntp
-  service: name=ntp state=restarted
-
-- name: Restart psad
-  service: name=psad state=restarted
