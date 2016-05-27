@@ -1,0 +1,4 @@
+Django==1.9.6
+fitbit==0.1.3
+WhiteNoise==1.0.4
+gunicorn==19.1.1

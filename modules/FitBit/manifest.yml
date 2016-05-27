@@ -1,0 +1,6 @@
+---
+applications:
+- name: FDL
+  instances: 1
+  memory: 128M
+  command: null

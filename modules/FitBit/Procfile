@@ -1,0 +1,1 @@
+web: gunicorn FitBit.wsgi --workers 1
