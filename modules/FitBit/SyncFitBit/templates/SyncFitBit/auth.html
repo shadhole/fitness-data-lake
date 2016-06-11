@@ -23,19 +23,9 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <img src="{% static 'img/bruins.png' %}">
-        <p>Hello world! This is my fitbit API test landing page.</p>
+        <p>successfully got an authorizaiton code: {{ fitbit_authcode }}</p>
         <p></p>
-
-<!-- need to convert hard-coded values in the active href block below to variables at some point.
-     the next two lines don't work yet but is where this code needs to go.
-
-        {% url 'fitbit_auth_URL' fitbit_response_type fitbit_client fitbit_secret fitbit_redirect_URI as the_URL %}
-        <a href= "{{ the_URL }}">Authorize the app to collect fitbit data from {{ the_URL }}</a>
--->
-        <p></p>
-        <a href="https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=227MC6&redirect_uri=http%3A%2F%2Ffdl.cfapps.io%2Ffitbit%2Fauth&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20weight&expires_in=604800">Authorize the app to collect fitbit data</a>
-
+        <script
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
