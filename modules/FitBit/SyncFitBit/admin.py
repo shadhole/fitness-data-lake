@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import FitBitData
+from .models import FitBitAuthData
 
-admin.site.register(FitBitData)
+admin.site.register(FitBitAuthData)

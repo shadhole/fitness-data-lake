@@ -20,5 +20,6 @@ def auth(request):
     # and make the fitbit api calls
 
     auth_code = request.GET.get('code')
-    context = { fitbit_auth.getfitbit_token(auth_code)}
+
+    context = { 'fitbit_auth_code' : fitbit_auth.subscribe_user(auth_code)}
     return render(request, "SyncFitBit/auth.html", context)
