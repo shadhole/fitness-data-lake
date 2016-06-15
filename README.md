@@ -8,9 +8,11 @@ This prototype collects data from a user's FitBit device. The data will (hopeful
  This application is written in Django/Python and pushed to Pivotal Web Services via CloudFoundry.
  
  Current feature:
+ 
     * user authorization to pull data from fitbit - returns the user's profile in a webpage
  
  Future enhancments:
+ 
     * store access tokens and user data in some persistent storage
     * leverage FitBit Subscription API for auto-notification when user data is changed on FitBit server
     * create research study app for iPhones
