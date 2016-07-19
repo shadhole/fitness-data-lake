@@ -4,6 +4,8 @@ import urllib
 import urllib.request
 from django.http import HttpResponse
 import json
+from . import FitBitAuthData
+
 
 #FitBit constants for our app after registering it on dev.fitbit.com
 fitbit_client = '227MC6'
@@ -85,6 +87,30 @@ def getfitbit_data(URL, auth_data):
             #Return that this didn't work, allowing the calling function to handle it
             return e.message
 
+def store_data(payload, payload_type):
+    '''
+    subroutine to store json data responses from fitbit in MongoDB
+    payload_type options:
+        auth - various tokens for access to user data
+        profile - user profile information
+        activity - user exercise activity data
+        heartrate - user resting heart rate
+        sleep - user sleep data
+        water - user water consumption
+    '''
+
+    if payload_type = 'auth':
+        json_response = json.loads(payload.decode('ascii'))
+        acctoken = json_response['access_token']
+        refreshtoken = json_response['refresh_token']
+        expires = json_response['expires_in']
+        scope = json_response['scope']
+        userid = json_response['user_id']
+        tokentype = json_response['token_type']
+        authdata = FitBitAuthData(acctoken,refreshtoken, expires, scope, userid, tokentype)
+        authdata.save()
+    else:
+        return "error storing data"
 
 def subscribe_user(auth_code):
     #main logic that calls subroutines in this module
@@ -97,11 +123,16 @@ def subscribe_user(auth_code):
     '''
 
     #use the auth_code to get the tokens needed to access user data
-#    access_data = HttpResponse()
     try:
         auth_data = getfitbit_token(auth_code)
     except urllib.error.URLError as e:
         return "error getting authorization token: " + e.message
+
+    #store data in persistent storage
+    try:
+        store_data(auth_data, 'auth')
+    except urllib.error.URLError as e:
+        return "error storing data: " + e.message
 
     #get user data
     try:
