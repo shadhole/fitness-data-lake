@@ -1,6 +1,8 @@
 ---
 applications:
 - name: FDL
-  instances: 1
+  instances: 2
   memory: 128M
   command: null
+  services:
+  - demo-mysql

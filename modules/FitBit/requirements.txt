@@ -1,4 +1,5 @@
-Django==1.9.6
+Django==1.10
 fitbit==0.1.3
-WhiteNoise==1.0.4
+WhiteNoise==3.2.1
 gunicorn==19.1.1
+mysqlclient==1.3.7

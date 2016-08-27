@@ -4,6 +4,7 @@ import urllib
 import urllib.request
 from django.http import HttpResponse
 import json
+from .models import UserProfile, FitBitAuthData
 
 #FitBit constants for our app after registering it on dev.fitbit.com
 fitbit_client = '227MC6'
@@ -15,13 +16,14 @@ fitbit_response_type = 'code'
 
 #FitBit API endpoints for various data
 fitbit_profile_API = "https://api.fitbit.com/1/user/-/profile.json"
+fitbit_sleep_API = "https://api.fitbit.com/1/user/-/sleep/date/2016-07-24.json"
 
 '''
 fitbit_activity_API
-fitbit_sleep_API
 fitbit_steps_API
 fitbit_hearrate_API
 '''
+error_message = ""
 
 def getfitbit_token(auth_code):
     #build the body
@@ -85,6 +87,27 @@ def getfitbit_data(URL, auth_data):
             #Return that this didn't work, allowing the calling function to handle it
             return e.message
 
+def store_data(payload, model):
+    global error_message
+    if model == 'profile':
+        json_response = json.loads(payload.decode('ascii'))
+        jsonUser = json_response['user']
+        userdata = UserProfile()
+        error_message = "created the class model"
+        userdata.full_name = jsonUser['fullName']
+        userdata.DOB = jsonUser['dateOfBirth']
+        userdata.fitbit_id = jsonUser['encodedId']
+        userdata.gender = jsonUser['gender']
+#        userdata.country = jsonUser['country']
+        userdata.height = jsonUser['height']
+        userdata.height_unit = jsonUser['heightUnit']
+        userdata.weight = jsonUser['weight']
+        userdata.weight_unit = jsonUser['weightUnit']
+        error_message = "trying to store data to MySQL"
+        userdata.save()
+        return "successfully stored data!"
+    else:
+        return "model type is wrong"
 
 def subscribe_user(auth_code):
     #main logic that calls subroutines in this module
@@ -106,8 +129,13 @@ def subscribe_user(auth_code):
     #get user data
     try:
         fitbit_data = getfitbit_data(fitbit_profile_API ,auth_data)
-        return fitbit_data.decode('ascii')
+        global error_message
+        error_message = "got the data. trying to store it..."
+        return_message = store_data(fitbit_data, 'profile')
+#        return fitbit_data.decode('ascii')
+        return return_message
     except urllib.error.URLError as e:
-        return "error getting user data: " + e.message
+
+        return error_message + e.message
 
 
